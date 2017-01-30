@@ -1,0 +1,27 @@
+Welcome to the wonderful world of ruby!  This explination will help you to build a program to store your random musings in a centralized .txt file.  To go over the basic idea of the thing, you will create a .ruby program that will take your input in the terminal and stick it in the .text file.  If none of that makes sense to you don't worry, it will by the end of the explination.
+
+The first thing you must understand is the terminal.  We are going to assume a slight knowlege of terminal operations, so if anything said here is confusing, google it!  The terminal is a textual interpretation of the file tree within your computer.  Most people are more used to the visual interpretaion, but the terminal is a much, much more usefull thing.  One of these useful things is creating ruby files, which is good, because we need a ruby file right about now. However, this ruby file needs to be in a sepecific spot, so that it can be accessed from any directory that your terminal might be.   This spot is usr/local/bin.  Go there now.(again, if confused, google it.)
+
+Now type in subl(or the callword for the text editor on your machine) nameoffile.rb.(replacing nameoffile with something you wish to type a hundred times in the near future).  This opens up a ruby file with the name you gave it.  Despite being in the right directory our program still is not acesible from all the other directories, and is still not accesible just by its name.  To deal with the second problem first, type #!/usr/bin/env ruby at the very top of the file.  This allows you to simply type the name and get the ruby file.  To rectify the first issue type chmod 755 whateveryounamedyourfile.rb in the terminal. This will change the permisions for the file and allow it to be called outside the directory in which it currently resides.  Save your file so that all our hard work is not lost. 
+
+With that finished it is time to actually sit down and start writing your program!  A good way to start is to sit down and map out and program.  We want a program that can open up a specified txt file from any directory, and either record inputted data or display the recorded data.  The first thing to do is to go to the directory you wish to store your .txt file in.  My recomindation would be to use the ~ directory.  Once you are in your chosen directory type pwd in your terminal. Copy the resulting location name and paste it in your ruby file. 
+
+Now we want to be ablie to write things into our file from the terminal.  To do this we need a process called ARGV.  On the second line of your ruby file type input = ARGV.  input is now shorthand for everything that the command line will bring into this program.
+
+Now that input is a reality we need a way to open a text file. The 	File.readlines(file).each do |list| command is how we shall do this, setting file = "name of location you copied two paragraphs earlier then name of text file.". With this in hand we need to have two sections to our program, one to write and one to read.  Both will be contained in an if loop.
+
+The first section will read as follows. 
+ 	if input != nil
+	input = input.join(" ")
+	open("name of thing", 'a') {|f|
+	f.puts input
+								}
+This will check if the input contains anything, make the ARGV input into a more reader friendly format, then open your text file in a writable format that does not erase what was previously written (the a) and put everything from ARGV into that file and save it. Pretty cool.
+
+The next portion of our file is even easier.  Write 
+	else File.open("you should be able to figure this out by now").each do |line|
+	puts line
+
+	end
+	end
+And there you go!  You should be able to type the name of your program from any directory to get a display of your recorded inputs, and typing the name of your program followed by something you want to save will result in the saving of your musing.  Happy recording!
